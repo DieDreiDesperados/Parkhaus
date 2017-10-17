@@ -1,0 +1,7 @@
+public class Parkhaus {
+
+    private
+
+
+
+}
