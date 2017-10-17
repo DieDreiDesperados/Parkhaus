@@ -11,12 +11,12 @@ public class Zeit {
 
     // Konstruktoren
     public Zeit(int tage, int stunden, int minuten) {
-        this.tage = tage + (stunden/24);
-        this.stunden = stunden + (minuten/60);
         this.minuten = minuten%60;
+        this.stunden = (stunden + (minuten/60))%24;
+        this.tage = tage + ((stunden + (minuten/60))/24);
     }
     public Zeit(int stunden, int minuten) { new Zeit(0,stunden,minuten); }
-    public Zeit(int stunden) { new Zeit(stunden,0); }
+    public Zeit(int minuten) { new Zeit(0,minuten); }
     public Zeit() { new Zeit(0); }
 
     // Getter und Setter
