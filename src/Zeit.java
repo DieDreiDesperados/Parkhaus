@@ -9,7 +9,7 @@ public class Zeit {
     private int stunden;
     private int minuten;
 
-    // Konstruktoren
+    // Konstruktoren (Überschlag muss behandelt werden)
     public Zeit(int tage, int stunden, int minuten) {
         this.minuten = minuten%60;
         this.stunden = (stunden + (minuten/60))%24;
