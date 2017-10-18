@@ -1,143 +1,72 @@
-/* ===========================================================
- * JFreeChart : a free chart library for the Java(tm) platform
- * ===========================================================
- *
- * (C) Copyright 2000-2004, by Object Refinery Limited and Contributors.
- *
- * Project Info:  http://www.jfree.org/jfreechart/index.html
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
- *
- * [Java is a trademark or registered trademark of Sun Microsystems, Inc.
- * in the United States and other countries.]
- *
- * ---------------------------
- * NormalDistributionDemo.java
- * ---------------------------
- * (C) Copyright 2004, by Object Refinery Limited and Contributors.
- *
- * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   -;
- *
- * $Id: NormalDistributionDemo.java,v 1.1 2004/05/26 13:02:03 mungady Exp $
- *
- /* ===========================================================
- * JFreeChart : a free chart library for the Java(tm) platform
- * ===========================================================
- *
- * (C) Copyright 2000-2004, by Object Refinery Limited and Contributors.
- *
- * Project Info:  http://www.jfree.org/jfreechart/index.html
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
- *
- * [Java is a trademark or registered trademark of Sun Microsystems, Inc.
- * in the United States and other countries.]
- *
- * ---------------------------
- * NormalDistributionDemo.java
- * ---------------------------
- * (C) Copyright 2004, by Object Refinery Limited and Contributors.
- *
- * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   -;
- *
- * $Id: NormalDistributionDemo.java,v 1.1 2004/05/26 13:02:03 mungady Exp $
- *
- * Changes
- * -------
- * 25-May-2004 : Version 1 (DG);
- *
- */
-
-package org.jfree.chart.demo;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.function.Function2D;
-import org.jfree.data.function.NormalDistributionFunction2D;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
-/**
- * This demo shows a normal distribution function.
- */
 public class Widget extends ApplicationFrame {
 
-    /**
-     * A demonstration application showing a normal distribution.
-     *
-     * @param title  the frame title.
-     */
-    public Widget(final String title) {
-
-        super(title);
-        Function2D normal = new NormalDistributionFunction2D(0.0, 1.0);
-        XYDataset dataset = DatasetUtilities.sampleFunction2D(normal, -5.0, 5.0, 100, "Normal");
-        final JFreeChart chart = ChartFactory.createXYLineChart(
-                "XY Series Demo",
-                "X",
-                "Y",
-                dataset,
+    public Widget( String applicationTitle , String chartTitle ) {
+        super( applicationTitle );
+        JFreeChart barChart = ChartFactory.createBarChart3D(
+                chartTitle,
+                "Zeit in Tagen",
+                "Einnahmen in Euro",
+                createDataset(),
                 PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
+                true, true, false);
 
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
-        setContentPane(chartPanel);
-
+        ChartPanel chartPanel = new ChartPanel( barChart );
+        chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
+        setContentPane( chartPanel );
     }
 
-    // ****************************************************************************
-    // * JFREECHART DEVELOPER GUIDE                                               *
-    // * The JFreeChart Developer Guide, written by David Gilbert, is available   *
-    // * to purchase from Object Refinery Limited:                                *
-    // *                                                                          *
-    // * http://www.object-refinery.com/jfreechart/guide.html                     *
-    // *                                                                          *
-    // * Sales are used to provide funding for the JFreeChart project - please    *
-    // * support us so that we can continue developing free software.             *
-    // ****************************************************************************
+    private CategoryDataset createDataset( ) {
+        final String montag = "Montag";
+        final String dienstag = "Dienstag";
+        final String mittwoch = "Mittwoch";
+        final String donnerstag = "Donnerstag";
+        final String freitag = "Freitag";
+        final String samstag = "Samstag";
+        final String normal = "Standard Ticket";
+        final String nacht = "Nacht Ticket";
+        final String tag = "Tages Ticket";
+        final DefaultCategoryDataset dataset =
+                new DefaultCategoryDataset( );
 
-    /**
-     * Starting point for the demonstration application.
-     *
-     * @param args  ignored.
-     */
-    public static void main(final String[] args) {
+        dataset.addValue( 1.0 , normal , montag );
+        dataset.addValue( 3.0 , normal , dienstag );
+        dataset.addValue( 2.5 , normal , mittwoch );
+        dataset.addValue( 5.0 , normal , donnerstag );
+        dataset.addValue( 7.0 , normal , freitag );
+        dataset.addValue( 5.0 , normal , samstag );
 
-        final Widget demo = new Widget("Verlauf der Einnahmen");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
+        dataset.addValue( 2.0 , nacht , montag );
+        dataset.addValue( 3.0 , nacht , dienstag );
+        dataset.addValue( 2.5 , nacht , mittwoch );
+        dataset.addValue( 5.0 , nacht , donnerstag );
+        dataset.addValue( 7.0 , nacht , freitag );
+        dataset.addValue( 5.0 , nacht , samstag );
 
+        dataset.addValue( 2.0 , tag , montag );
+        dataset.addValue( 3.0 , tag , dienstag );
+        dataset.addValue( 2.5 , tag , mittwoch );
+        dataset.addValue( 5.0 , tag , donnerstag );
+        dataset.addValue( 7.0 , tag , freitag );
+        dataset.addValue( 5.0 , tag , samstag );
+
+
+        return dataset;
     }
 
+    public static void main( String[ ] args ) {
+        Widget chart = new Widget("Einnahmen/Zeit",
+                "Verteilung der Einnahmen");
+        chart.pack( );
+        RefineryUtilities.centerFrameOnScreen( chart );
+        chart.setVisible( true );
+    }
 }
