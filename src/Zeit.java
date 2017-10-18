@@ -1,5 +1,5 @@
 /* Klasse, das ein Zeitintervall beschreibt
- * (Für das Ticket?)
+ * (Für Öffnungszeiten und vielleicht das Ticket?)
  *
  * Für eine Klasse MasterClock muss noch irgendwie daran rumgeschraubt werden
  */
