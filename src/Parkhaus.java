@@ -28,6 +28,10 @@ public class Parkhaus {
     public boolean getVoll() { return istVoll; }
     public boolean getGeschlossen() { return istGeschlossen; }
 
+    private boolean checkID(int id) {
+        return (id == getID());
+    }
+
     public boolean getPlatzBesetzt(int platznr) {
         try {
             return parkplaetze[platznr];
@@ -49,4 +53,78 @@ public class Parkhaus {
             return null;
         return widgetList;
     }
+
+    public void setPreis(int id, double newPreis) {
+        if (!checkID(id))
+            return;
+        preisNormal = newPreis;
+    }
+
+    public void setPreisDauer(int id, double newPreisDauer) {
+        if (!checkID(id))
+            return;
+        preisDauer = newPreisDauer;
+
+    }
+
+    public void setVoll(int id, boolean voll) {
+        if (!checkID(id))
+            return;
+        istVoll = voll;
+    }
+
+    public void setGeschlossen(int id, boolean zu) {
+        if (!checkID(id))
+            return;
+        istGeschlossen = zu;
+    }
+
+    public void setPlatzBesetzt(int id, int platznr, boolean besetzt) {
+        if (!checkID(id))
+            return;
+        try {
+            parkplaetze[platznr] = besetzt;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return;
+        }
+    }
+
+    public void setAutomatFrei(int autonr, boolean besetzt) {
+        try {
+            automaten[autonr].setIstBesetzt(besetzt)
+        } catch (ArrayIndexOutOfBoundsException e) {
+        } finally {
+            return;
+        }
+    }
+
+    public double takeKassenbestand (int id) {
+        if (!checkID(id))
+            return 0;
+
+        double bestand = 0.0;
+        for (int i = 0; i < automaten.length; ++i)
+            bestand += automaten[i].eraseGeld(id);
+
+        return bestand;
+    }
+
+    // Kasse nicht leeren, nur einen bestimmten Betrag von den Automaten abziehen
+    public double takeKassenbestand (int id, double betrag) {
+        if (!checkID(id))
+            return 0;
+
+        double bestand = 0.0;
+        int i = 0;
+
+        // Diese Lösung ist scheiße
+        while (bestand != betrag)
+            bestand += automaten[(i++)%automaten.length].takeAwayGeld(id,0.01);
+
+        return bestand;
+    }
+
+
+
+
 }

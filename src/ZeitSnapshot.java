@@ -28,7 +28,7 @@ public class ZeitSnapshot {
         int differenz[] = new int[5];
 
         for (int i = 0; i < datum.length; ++i)
-            differenz[i] = Math.abs(datum[i]-other[i]);
+            differenz[i] = Math.abs(datum[i]-other.getDatum()[i]);
         return differenz;
 
     }

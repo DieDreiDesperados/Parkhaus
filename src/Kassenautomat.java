@@ -24,7 +24,7 @@ public class Kassenautomat {
     }
 
     // Besetzung umstellen
-    private void setIstBesetzt(boolean besetzt) {
+    public void setIstBesetzt(boolean besetzt) {
         istBesetzt = besetzt;
     }
 
@@ -37,11 +37,12 @@ public class Kassenautomat {
     }
 
     // Einen bestimmten Betrag vom Automaten abziehen
-    private void takeAwayGeld (int id, double wert) {
+    public double takeAwayGeld (int id, double wert) {
         if (!checkID(id) || wert < 0 || wert > getGeld(id))
-            return;
+            return 0;
 
         geldBestand -= wert;
+        return wert;
     }
 
     // Einen bestimmten Betrag zum Geldbestand hinzufügen
