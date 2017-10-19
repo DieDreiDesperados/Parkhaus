@@ -54,7 +54,7 @@ public class Manager{
         gibAnWidget(manParkhaus.getWidgetList(manID));
     }
     private void gibAnWidget(ArrayList<Double[]> arrayList){
-        NormalDistributionDemo chart = new NormalDistributionDemo("Einnahmen/Zeit",
+        Widget chart = new Widget("Einnahmen/Zeit",
                 "Verteilung der Einnahmen", arrayList);
         chart.pack( );
         RefineryUtilities.centerFrameOnScreen( chart );

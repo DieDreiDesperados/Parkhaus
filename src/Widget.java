@@ -9,12 +9,12 @@ import org.jfree.ui.RefineryUtilities;
 
 import java.util.ArrayList;
 
-public class NormalDistributionDemo extends ApplicationFrame {
+public class Widget extends ApplicationFrame {
     private ArrayList<Double[]> arrayList;
 
 
 
-    public NormalDistributionDemo( String applicationTitle , String chartTitle ) {
+    public Widget( String applicationTitle , String chartTitle ) {
         super( applicationTitle );
         gesamtBesucherCounter = 0;
         JFreeChart barChart = ChartFactory.createBarChart3D(
@@ -29,7 +29,7 @@ public class NormalDistributionDemo extends ApplicationFrame {
         chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
         setContentPane( chartPanel );
     }
-    public NormalDistributionDemo( String applicationTitle , String chartTitle, ArrayList<Double[]> arrayList ) {
+    public Widget( String applicationTitle , String chartTitle, ArrayList<Double[]> arrayList ) {
         super( applicationTitle );
         gesamtBesucherCounter = 0;
         this.arrayList = arrayList;
