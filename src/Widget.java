@@ -7,10 +7,16 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
-public class Widget extends ApplicationFrame {
+import java.util.ArrayList;
 
-    public Widget( String applicationTitle , String chartTitle ) {
+public class NormalDistributionDemo extends ApplicationFrame {
+    private ArrayList<Double[]> arrayList;
+
+
+
+    public NormalDistributionDemo( String applicationTitle , String chartTitle ) {
         super( applicationTitle );
+        gesamtBesucherCounter = 0;
         JFreeChart barChart = ChartFactory.createBarChart3D(
                 chartTitle,
                 "Zeit in Tagen",
@@ -23,6 +29,24 @@ public class Widget extends ApplicationFrame {
         chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
         setContentPane( chartPanel );
     }
+    public NormalDistributionDemo( String applicationTitle , String chartTitle, ArrayList<Double[]> arrayList ) {
+        super( applicationTitle );
+        gesamtBesucherCounter = 0;
+        this.arrayList = arrayList;
+        JFreeChart barChart = ChartFactory.createBarChart3D(
+                chartTitle,
+                "Zeit in Tagen",
+                "Einnahmen in Euro",
+                createDataset(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+        ChartPanel chartPanel = new ChartPanel( barChart );
+        chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
+        setContentPane( chartPanel );
+
+    }
+
 
     private CategoryDataset createDataset( ) {
         final String montag = "Montag";
@@ -36,37 +60,122 @@ public class Widget extends ApplicationFrame {
         final String tag = "Tages Ticket";
         final DefaultCategoryDataset dataset =
                 new DefaultCategoryDataset( );
+        double monday_ein_norm = 0.0;
+        double tuesday_ein_norm = 0.0;
+        double wednesday_ein_norm = 0.0;
+        double thursday_ein_norm = 0.0;
+        double friday_ein_norm = 0.0;
+        double saturday_ein_norm = 0.0;
 
-        dataset.addValue( 1.0 , normal , montag );
-        dataset.addValue( 3.0 , normal , dienstag );
-        dataset.addValue( 2.5 , normal , mittwoch );
-        dataset.addValue( 5.0 , normal , donnerstag );
-        dataset.addValue( 7.0 , normal , freitag );
-        dataset.addValue( 5.0 , normal , samstag );
+        double monday_ein_tag = 0.0;
+        double tuesday_ein_tag = 0.0;
+        double wednesday_ein_tag = 0.0;
+        double thursday_ein_tag = 0.0;
+        double friday_ein_tag = 0.0;
+        double saturday_ein_tag = 0.0;
 
-        dataset.addValue( 2.0 , nacht , montag );
-        dataset.addValue( 3.0 , nacht , dienstag );
-        dataset.addValue( 2.5 , nacht , mittwoch );
-        dataset.addValue( 5.0 , nacht , donnerstag );
-        dataset.addValue( 7.0 , nacht , freitag );
-        dataset.addValue( 5.0 , nacht , samstag );
+        double monday_ein_nacht = 0.0;
+        double tuesday_ein_nacht = 0.0;
+        double wednesday_ein_nacht = 0.0;
+        double thursday_ein_nacht = 0.0;
+        double friday_ein_nacht = 0.0;
+        double saturday_ein_nacht = 0.0;
 
-        dataset.addValue( 2.0 , tag , montag );
-        dataset.addValue( 3.0 , tag , dienstag );
-        dataset.addValue( 2.5 , tag , mittwoch );
-        dataset.addValue( 5.0 , tag , donnerstag );
-        dataset.addValue( 7.0 , tag , freitag );
-        dataset.addValue( 5.0 , tag , samstag );
 
+        for(Double[] array: arrayList){
+            int letzteAnfrageBesucherCounter = 0;
+
+            if (array[2].equals(1.0)) {
+                if(array[1].equals(1.0)){
+                    monday_ein_norm += array[0];
+                }
+                else if(array[1].equals(2.0)){
+                    tuesday_ein_norm += array[0];
+                }
+                else if(array[1].equals(3.0)){
+                    wednesday_ein_norm += array[0];
+                }
+                else if(array[1].equals(4.0)){
+                    thursday_ein_norm += array[0];
+                }
+                else if(array[1].equals(5.0)){
+                    friday_ein_norm += array[0];
+                }
+                else if(array[1].equals(6.0)){
+                    saturday_ein_norm += array[0];
+                }
+
+            } else if (array[2].equals(2.0)) {
+                if(array[1].equals(1.0)){
+                    monday_ein_nacht += array[0];
+                }
+                else if(array[1].equals(2.0)){
+                    tuesday_ein_nacht += array[0];
+                }
+                else if(array[1].equals(3.0)){
+                    wednesday_ein_nacht += array[0];
+                }
+                else if(array[1].equals(4.0)){
+                    thursday_ein_nacht += array[0];
+                }
+                else if(array[1].equals(5.0)){
+                    friday_ein_nacht += array[0];
+                }
+                else if(array[1].equals(6.0)){
+                    saturday_ein_nacht += array[0];
+                }
+
+            } else if (array[2].equals(3.0)) {
+                if(array[1].equals(1.0)){
+                    monday_ein_tag += array[0];
+                }
+                else if(array[1].equals(2.0)){
+                    tuesday_ein_tag += array[0];
+                }
+                else if(array[1].equals(3.0)){
+                    wednesday_ein_tag += array[0];
+                }
+                else if(array[1].equals(4.0)){
+                    thursday_ein_tag += array[0];
+                }
+                else if(array[1].equals(5.0)){
+                    friday_ein_tag += array[0];
+                }
+                else if(array[1].equals(6.0)){
+                    saturday_ein_tag += array[0];
+                }
+
+                letzteAnfrageBesucherCounter++;
+
+            }
+        }
+
+        dataset.addValue(monday_ein_norm, normal, montag );
+        dataset.addValue(monday_ein_tag, tag, montag );
+        dataset.addValue(monday_ein_nacht, nacht, montag );
+
+        dataset.addValue(tuesday_ein_norm, normal, dienstag );
+        dataset.addValue(tuesday_ein_tag, tag, dienstag );
+        dataset.addValue(tuesday_ein_nacht, nacht, dienstag );
+
+        dataset.addValue(wednesday_ein_norm, normal, mittwoch );
+        dataset.addValue(wednesday_ein_tag, tag, mittwoch );
+        dataset.addValue(wednesday_ein_nacht, nacht, mittwoch );
+
+        dataset.addValue(thursday_ein_norm, normal, donnerstag );
+        dataset.addValue(thursday_ein_tag, tag, donnerstag );
+        dataset.addValue(thursday_ein_nacht, nacht, donnerstag );
+
+        dataset.addValue(friday_ein_norm, normal, freitag );
+        dataset.addValue(friday_ein_tag, tag, freitag );
+        dataset.addValue(friday_ein_nacht, nacht, freitag );
+
+        dataset.addValue(saturday_ein_norm, normal, samstag );
+        dataset.addValue(saturday_ein_tag, tag, samstag );
+        dataset.addValue(saturday_ein_nacht, nacht, samstag );
 
         return dataset;
     }
 
-    public static void main( String[ ] args ) {
-        Widget chart = new Widget("Einnahmen/Zeit",
-                "Verteilung der Einnahmen");
-        chart.pack( );
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setVisible( true );
-    }
+
 }
