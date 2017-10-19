@@ -151,9 +151,8 @@ public class Widget extends ApplicationFrame {
                     saturday_ein_tag += array[0];
                 }
 
-                letzteAnfrageBesucherCounter++;
-
             }
+            letzteAnfrageBesucherCounter++;
         }
 
         dataset.addValue(monday_ein_norm, normal, montag );
