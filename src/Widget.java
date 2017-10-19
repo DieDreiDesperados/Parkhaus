@@ -42,8 +42,14 @@ public class Widget extends ApplicationFrame {
                 true, true, false);
 
         ChartPanel chartPanel = new ChartPanel( barChart );
+        JLabel input;
+        input = new JLabel("Gesamtbesucher: " + gesamtBesucherCounter);
+        input.setSize(200, 200);
+        input.setLocation(425, 250);
+        chartPanel.add(input);
         chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
         setContentPane( chartPanel );
+        setLayout(null);
 
     }
 
