@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Parkhaus {
 
+    enum WelcheSchranke{EINGANG,AUSGANG}
+
     private Kassenautomat automaten[];
     private boolean parkplaetze[];
     private double preisNormal;
@@ -27,6 +29,9 @@ public class Parkhaus {
     public double getPreisDauer() { return preisDauer; }
     public boolean getVoll() { return istVoll; }
     public boolean getIstGeschlossen() { return istGeschlossen; }
+    public Schranke getSchranke(WelcheSchranke welche ) {
+        return (welche == WelcheSchranke.EINGANG) ? eingang : ausgang;
+    }
 
     private boolean checkID(int id) {
         return (id == getID());
