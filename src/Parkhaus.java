@@ -10,7 +10,7 @@ public class Parkhaus {
     private Schranke ausgang;
     private boolean istVoll;
     private boolean istGeschlossen;
-    private ArrayList<double[]> widgetList;
+    private ArrayList<Double[]> widgetList;
     private final int manID;
     private Zeit oeffnungzeiten[];
 
@@ -26,7 +26,7 @@ public class Parkhaus {
     public double getPreis() { return preisNormal; }
     public double getPreisDauer() { return preisDauer; }
     public boolean getVoll() { return istVoll; }
-    public boolean getGeschlossen() { return istGeschlossen; }
+    public boolean getIstGeschlossen() { return istGeschlossen; }
 
     private boolean checkID(int id) {
         return (id == getID());
@@ -48,7 +48,7 @@ public class Parkhaus {
         }
     }
 
-    public ArrayList<double[]> getWidgetList(int id) {
+    public ArrayList<Double[]> getWidgetList(int id) {
         if (id != manID)
             return null;
         return widgetList;
@@ -98,6 +98,18 @@ public class Parkhaus {
         }
     }
 
+    public double getKassenBestand(int id) {
+        if (!checkID(id))
+            return 0;
+
+        double bestand = 0.0;
+        for (int i = 0; i < automaten.length; ++i)
+            bestand += automaten[i].getGeld(id);
+
+        return bestand;
+
+    }
+
     public double takeKassenbestand (int id) {
         if (!checkID(id))
             return 0;
@@ -109,8 +121,9 @@ public class Parkhaus {
         return bestand;
     }
 
+
     // Kasse nicht leeren, nur einen bestimmten Betrag von den Automaten abziehen
-    public double takeKassenbestand (int id, double betrag) {
+    public double takeKassenBestand (int id, double betrag) {
         if (!checkID(id))
             return 0;
 
@@ -122,6 +135,10 @@ public class Parkhaus {
             bestand += automaten[(i++)%automaten.length].takeAwayGeld(id,0.01);
 
         return bestand;
+    }
+
+    public void setOeffnungzeiten (double zeiten[7][2]) {
+        // in Arbeit...
     }
 
 
