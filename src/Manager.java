@@ -2,6 +2,10 @@
    Manager Klasse
  */
 
+import org.jfree.ui.RefineryUtilities;
+
+import java.util.ArrayList;
+
 public class Manager{
 
     private final int manID;
@@ -11,7 +15,7 @@ public class Manager{
     public Manager(){
         double zufallsZahl = Math.random();
         double zufallsZahl2 = Math.random();
-        int ID = zufallsZahl*1333 + zufallsZahl2*133;
+        int ID = (int)(zufallsZahl*1333 + zufallsZahl2*133);
         this.manID = ID;
         manParkhaus = new Parkhaus(manID);
     }
@@ -26,29 +30,30 @@ public class Manager{
 
     void setGeschlossen(boolean statusAendern){
          if((statusAendern == true) && manParkhaus.getIstGeschlossen() == false){
-             manParkhaus.setGeschlossen(manID);
+             manParkhaus.setGeschlossen(manID, statusAendern);
          }
          if((statusAendern == false) && manParkhaus.getIstGeschlossen() == true){
-             man.Parkhaus.setGeoeffnet(manID);
+             manParkhaus.setGeschlossen(manID, statusAendern);
          }
     }
 
-    void setOeffnungszeiten(double[7][2] zeiten){
+    void setOeffnungszeiten(double[][] zeiten){
         manParkhaus.setOeffnungszeiten(zeiten, manID);
     }
 
     double getKassenBestand(){
-        return manParkhaus.getKassenBestand(manID);
+        return manParkhaus.takeKassenbestand(manID);
     }
-    double takeKassenBestand(int money){
-        double geld = manParkhaus.takeKassenBestand(money, manID);
+    double takeKassenBestand(double money){
+        double geld = manParkhaus.takeKassenbestand(manID, money);
         eigeneKasse += geld;
         return geld;
     }
 
+    //wird noch überdacht
     void makeDiagramm(String laenge){
-        arrayList<double[]> liste = manParkhaus.getWidgetList(manID);
-        Widget.makeListe(liste, laenge);
+        ArrayList<Double[]> liste = manParkhaus.getWidgetList(manID);
+       // Widget.makeListe(liste, laenge);
     }
     void erstelleGraph(){
         gibAnWidget(manParkhaus.getWidgetList(manID));

@@ -7,11 +7,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Widget extends ApplicationFrame {
     private ArrayList<Double[]> arrayList;
-
+    private int gesamtBesucherCounter;
 
 
     public Widget( String applicationTitle , String chartTitle ) {
