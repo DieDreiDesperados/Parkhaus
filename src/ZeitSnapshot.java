@@ -33,4 +33,15 @@ public class ZeitSnapshot {
 
     }
 
+    @Override
+    public String toString() {
+        char trennzeichen = ':';
+        String output = "";
+        for (int i = 0; i < datum.length; ++i) {
+            output += datum[i];
+            output += (i < datum.length - 1) ? trennzeichen : "";
+        }
+
+        return output;
+    }
 }

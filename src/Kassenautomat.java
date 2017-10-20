@@ -15,7 +15,7 @@ public class Kassenautomat {
 
     // ID-Check: Fragt auch der Manager die Methoden ab?
     private boolean checkID(int id) {
-        return (id == meinParkhaus.getID())
+        return (id == meinParkhaus.getID());
     }
 
     // Ist der Automat besetzt?
@@ -31,7 +31,7 @@ public class Kassenautomat {
     // Kleingeldstand ablesen
     public double getGeld (int id) {
         if (!checkID(id))
-            return -1 // Vielleicht lieber eine Exception werfen?
+            return -1; // Vielleicht lieber eine Exception werfen?
 
         return geldBestand;
     }
