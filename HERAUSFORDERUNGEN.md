@@ -1,4 +1,4 @@
-#Funktionale Herausforderungen
+# Funktionale Herausforderungen
 
 
     1. Das Parkhaussystem muss Autofahrern die Möglichkeit bieten, das Parkhaus zu betreten.
@@ -14,7 +14,7 @@
     11. Falls alle Parkplätze besetzt sind, muss das Parkplatzsystem fähig sein, die Schranken geschlossen zu halten.
 
 
-#Nichtfunktionale Herausforderungen
+# Nichtfunktionale Herausforderungen
 
 
     1. Das Parkhaussystem sollte effizient bedienbar sein (Autofahrer bekommen nur ein Ticket, leichte Kassenautomatenbedienung).
@@ -26,7 +26,7 @@
 
 
 
-#Technische Herausforderungen
+# Technische Herausforderungen
 
     1. Daten des Parkhaussystems wie Öffnungszeiten oder Preise sollten auf einem eigenen Server abgesichert sein.
     2. Tickets müssen mit einer für Autofahrer verständlichen Beschriftung gedruckt werden.
@@ -34,7 +34,7 @@
 
 
 
-#Rahmenbedingungen
+# Rahmenbedingungen
 
     1. Das Parkhaussystem muss zugänglich für Rollstuhlfahrer sein.
     2. Das Parkhaussystem muss ein rechtlich abgesicheres Parken nach der Straßenverkehrsordnung garantieren.
