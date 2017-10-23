@@ -11,3 +11,5 @@
     9. Als Autofahrer möchte ich sehen, welcher Platz besetzt ist, um leichter parken zu können.
     10. Als Autofahrer möchte ich die aktuellen Öffnungszeiten sehen, um zeiteffizienter parken zu können.
 
+
+
