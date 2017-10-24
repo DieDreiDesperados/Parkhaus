@@ -1,4 +1,4 @@
-# User Stories
+# User Storiesfile:///home/dk/Documents/FH/2017-2018 WS/SE I/Parkhaus/StoryMap.png
 
     1. Als Autofahrer möchte ich mein Auto für mehrere Stunden abstellen, um mit der Bahn weiterfahren zu können.
     2. Als Manager benötige ich eine grafische Darstellung des Kassenbestandes, um die Finanzen des Parkhauses im Blick haben zu können.
@@ -11,5 +11,7 @@
     9. Als Autofahrer möchte ich sehen, welcher Platz besetzt ist, um leichter parken zu können.
     10. Als Autofahrer möchte ich die aktuellen Öffnungszeiten sehen, um zeiteffizienter parken zu können.
 
+
+![User Map](https://raw.githubusercontent.com/DieDreiDesperados/Parkhaus/master/StoryMap.png)
 
 
