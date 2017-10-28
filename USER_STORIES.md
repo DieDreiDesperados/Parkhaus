@@ -1,4 +1,4 @@
-# User Storiesfile:///home/dk/Documents/FH/2017-2018 WS/SE I/Parkhaus/StoryMap.png
+# User Stories
 
     1. Als Autofahrer möchte ich mein Auto für mehrere Stunden abstellen, um mit der Bahn weiterfahren zu können.
     2. Als Manager benötige ich eine grafische Darstellung des Kassenbestandes, um die Finanzen des Parkhauses im Blick haben zu können.
