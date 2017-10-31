@@ -8,7 +8,6 @@ public class UhrZeit {
     private int minuten;
 
     // Konstruktoren (Überschlag muss behandelt werden)
-
     public UhrZeit (int stunden, int minuten) {
         this.minuten = minuten%60;
         this.stunden = (stunden + (minuten/60))%24;

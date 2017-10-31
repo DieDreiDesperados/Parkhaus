@@ -2,34 +2,37 @@ import java.util.ArrayList;
 
 public class Parkhaus {
 
-    enum WelcheSchranke{EINGANG,AUSGANG}
+    enum WelcheSchranke {EINGANG,AUSGANG}
 
     private Kassenautomat automaten[];
     private boolean parkplaetze[];
+    private int freieParkplaetze;
     private double preisNormal;
     private double preisDauer;
-    private Schranke eingang;
-    private Schranke ausgang;
+    private EingangsSchranke eingang;
+    private AusgangsSchranke ausgang;
     private boolean istVoll;
     private boolean istGeschlossen;
     private ArrayList<Double[]> widgetList;
     private final int manID;
-    private Zeit oeffnungzeiten[];
+    private UhrZeit oeffnungzeiten[][];
 
 
     public Parkhaus (int managerID) {
+        freieParkplaetze = 500;
         manID = managerID;
         automaten = new Kassenautomat[5];
-        parkplaetze = new boolean[500];
-        oeffnungzeiten = new Zeit[2];
+        parkplaetze = new boolean[freieParkplaetze];
+        oeffnungzeiten = new UhrZeit[7][2];
     }
 
     public int getID() { return manID; }
     public double getPreis() { return preisNormal; }
     public double getPreisDauer() { return preisDauer; }
     public boolean getVoll() { return istVoll; }
+    public int getFreieParkplaetze() { return freieParkplaetze; }
     public boolean getIstGeschlossen() { return istGeschlossen; }
-    public Schranke getSchranke(WelcheSchranke welche ) {
+    public Schranke getSchranke(WelcheSchranke welche) {
         return (welche == WelcheSchranke.EINGANG) ? eingang : ausgang;
     }
 
@@ -96,7 +99,7 @@ public class Parkhaus {
 
     public void setAutomatFrei(int autonr, boolean besetzt) {
         try {
-            automaten[autonr].setIstBesetzt(besetzt)
+            automaten[autonr].setIstBesetzt(besetzt);
         } catch (ArrayIndexOutOfBoundsException e) {
         } finally {
             return;
@@ -142,8 +145,12 @@ public class Parkhaus {
         return bestand;
     }
 
-    public void setOeffnungzeiten (double zeiten[7][2]) {
-        // in Arbeit...
+    public void setOeffnungzeiten (UhrZeit zeiten[][]) {
+
+        if (zeiten.length != 7 || zeiten[0].length != 2)
+            return;
+
+        oeffnungzeiten = zeiten;
     }
 
 
