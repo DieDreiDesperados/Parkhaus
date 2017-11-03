@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor customer
+actor manager
+actor automat
+rectangle Parkhaus {
+  customer -- (getTicket)
+  customer -- (getPreis) 
+  customer -- (getIstVoll)
+  customer -- (getIstGeschlossen)
+  customer -- (getPlatzBesetzt)
+  customer -- (getAutomatFrei)
+  (getPreis) -- automat
+  (setAutomatBesetzt) -- automat
+  (setPreis) -- manager
+  (getWidgetList) -- manager
+  (setGeschlossen) -- manager
+  
+
+}
+@enduml
