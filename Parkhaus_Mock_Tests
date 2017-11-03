@@ -1,0 +1,47 @@
+public interface PREIS_PARKHAUS {
+
+    double getPreis();
+    void setPreis(double x);
+}
+
+public class Preis_Parkhaus_Mock implements PREIS_PARKHAUS{
+
+    private double preis;
+
+    @Override
+    public double getPreis() {
+        return preis;
+    }
+
+    @Override
+    public void setPreis(double x) {
+       this.preis = x;
+    }
+}
+
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+public class Parkhaus_Test {
+  PREIS_PARKHAUS p1, p2;
+
+  @Before
+    public void setUp() throws Exception{
+      p1 = new Preis_Parkhaus_Mock();
+      p1.setPreis(10.00);
+      p2 = new Preis_Parkhaus_Mock();
+  }
+
+  @Test
+    public void testGetPreis(){
+      assertEquals(10.00, p1.getPreis(), 0.0001);
+  }
+
+  @Test
+    public void testSetPreis(){
+        p2.setPreis(3.00);
+        assertEquals(3.00, p2.getPreis(), 0.0001);
+  }
+
+}
