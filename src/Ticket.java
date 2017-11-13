@@ -2,8 +2,8 @@ import java.security.Timestamp;
 
 public class Ticket implements TicketIF {
 
-	private long Ankunftszeit = 0;
-	private long Zahlzeit = 0;
+	private ZeitSnapshot Ankunftszeit;
+	private ZeitSnapshot Zahlzeit;
 	private boolean Gueltig = false;
 
 	public Ticket(){
@@ -12,23 +12,23 @@ public class Ticket implements TicketIF {
 	
 	//Setz die Ankunftzseit auf die aktuelle Zeit
 	public void setAnkunft() {
-		this.Ankunftszeit = AktuelleZeit();
+		this.Ankunftszeit = new ZeitSnapshot();
 		this.Zahlzeit = this.Ankunftszeit;
 	}
 
 	//Setzt die Zahlzeit auf die aktuelle Zeit
 	public void setZahlzeit() {
 		//Setzt die Bezahlzeit
-		this.Zahlzeit = AktuelleZeit();
+		this.Zahlzeit = new ZeitSnapshot();
 	}
 	
 	//Setzt die Variable Ankunft auf eine uebergebene Zeit
-	public void setAnkunft(long Ankunft){
+	public void setAnkunft(ZeitSnapshot Ankunft){
 		this.Ankunftszeit = Ankunft;
 	}
 	
 	//Setzt die Zahlzeit auf eine uebergebene Zeit
-	public void setZahlzeit(long Zahlzeit){
+	public void setZahlzeit(ZeitSnapshot Zahlzeit){
 		this.Zahlzeit = Zahlzeit;
 	}
 	
@@ -39,7 +39,8 @@ public class Ticket implements TicketIF {
 
 	//überprüft ob Ticket noch in der Ausfahrtszeit ist
 	public boolean getGueltig() {
-		if(AktuelleZeit() <= (Zahlzeit+54000) && this.Gueltig == true){
+		ZeitSnapshot temp = new ZeitSnapshot();
+		if(temp.getDifferenz(this.Zahlzeit)[4] < 15 && this.Gueltig == true){
 			return true;
 		}
 		else{
@@ -49,13 +50,22 @@ public class Ticket implements TicketIF {
 	
 	//Gibt die Anzahl der zu bezahlenden Stunden an.
 	public int getStunden(){
-		float f =(float) (((this.Zahlzeit - this.Ankunftszeit) / 60 / 60)+ 0.5);
-		return Math.round(f);
+		if(this.Zahlzeit.getDifferenz(this.Ankunftszeit)[4] > 0  ){
+			return this.Zahlzeit.getDifferenz(this.Ankunftszeit)[3]+1;
+		}
+		else {
+			return this.Zahlzeit.getDifferenz(this.Ankunftszeit)[3];
+		}
 		
 	}
 	
 	//Setzt die Variable ab ob Ticket gueltig ist oder nicht
 	public void setGueltig(boolean value){
 		this.Gueltig = value;
+	}
+	
+	public String ToString(){
+		String str = "Einfahrt: "+this.Ankunftszeit.toString()+" bezahlt: "+this.Zahlzeit.toString()+" gueltig: "+this.Gueltig;
+		return str;
 	}
 }

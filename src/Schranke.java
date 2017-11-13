@@ -16,19 +16,13 @@ public class Schranke implements SchrankeIF {
 
 	@Override
 	public void geheRunter() throws Exception {
-		this.SchrankenPos = false;
-
-	}
-
-	@Override
-	public Ticket gibtTicket() {
-		return new Ticket();
+		this.position = SchrankenPos.UNTEN;
 
 	}
 
 //TODO ?????
 	public void changePosition() throws Exception {
-		if(this.SchrankenPos = true){
+		if(this.position == SchrankenPos.OBEN){
 			this.geheRunter();
 		}
 		else{
@@ -41,17 +35,10 @@ public class Schranke implements SchrankeIF {
 		return vTicket.getGueltig();
 	}
 
-	public void TakeTicket(Ticket vTicket) {
-		vTicket.setGueltig(false);
-	}
-
-	public Ticket spucktTicketAus(Ticket vTicket) {
-		// TODO Auto-generated method stub
+	public void nehmeTicket(){}
+	
+	public Ticket gibtTicket(){
 		return null;
-	}
-
-	public void TakeTicket() {
-		// TODO Auto-generated method stub
 	}
 
 }

@@ -24,6 +24,8 @@ public class Parkhaus {
         automaten = new Kassenautomat[5];
         parkplaetze = new boolean[freieParkplaetze];
         oeffnungzeiten = new UhrZeit[7][2];
+        this.eingang = new EingangsSchranke();
+        this.ausgang = new AusgangsSchranke();
     }
 
     public int getID() { return manID; }

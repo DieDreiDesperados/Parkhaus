@@ -60,13 +60,14 @@ public class Kassenautomat {
     // Nehme ein Ticket an und prüfe es, ziehe Betrag ein usw.
     public void checkTicket (Ticket t) {
         setIstBesetzt(true);
-        if (!t.getGueltig() || t.getBezahlt()) {
+        if (!t.getGueltig()) {
             setIstBesetzt(false);
             return;
         }
 
         addGeld(berechnePreis(t));
-        t.setBezahlt(true);
+        t.setGueltig(true);
+        t.setZahlzeit();
         setIstBesetzt(false);
         return;
 
