@@ -9,6 +9,7 @@ public class Parkhaus {
     private int freieParkplaetze;
     private double preisNormal;
     private double preisDauer;
+    private double preisTag;
     private EingangsSchranke eingang;
     private AusgangsSchranke ausgang;
     private boolean istVoll;
@@ -18,19 +19,22 @@ public class Parkhaus {
     private UhrZeit oeffnungzeiten[][];
 
 
-    public Parkhaus (int managerID) {
-        freieParkplaetze = 500;
-        manID = managerID;
-        automaten = new Kassenautomat[5];
+    public Parkhaus (Manager manager, int plaetze) {
+        freieParkplaetze = plaetze;
+        manID = manager.getID();
+        manager.setParkhaus(this);
+        automaten = new Kassenautomat[plaetze/100 + 1];
         parkplaetze = new boolean[freieParkplaetze];
         oeffnungzeiten = new UhrZeit[7][2];
         this.eingang = new EingangsSchranke();
         this.ausgang = new AusgangsSchranke();
+        preisNormal = preisDauer = preisTag = 0;
     }
 
     public int getID() { return manID; }
     public double getPreis() { return preisNormal; }
     public double getPreisDauer() { return preisDauer; }
+    public double getPreisTag() { return preisTag; }
     public boolean getVoll() { return istVoll; }
     public int getFreieParkplaetze() { return freieParkplaetze; }
     public boolean getIstGeschlossen() { return istGeschlossen; }
@@ -71,6 +75,13 @@ public class Parkhaus {
     }
 
     public void setPreisDauer(int id, double newPreisDauer) {
+        if (!checkID(id))
+            return;
+        preisDauer = newPreisDauer;
+
+    }
+
+    public void setPreisTag(int id, double newPreisDauer) {
         if (!checkID(id))
             return;
         preisDauer = newPreisDauer;
@@ -140,7 +151,7 @@ public class Parkhaus {
         double bestand = 0.0;
         int i = 0;
 
-        // Diese Lösung ist scheiße
+        // Diese Loesung ist scheisse
         while (bestand != betrag)
             bestand += automaten[(i++)%automaten.length].takeAwayGeld(id,0.01);
 
