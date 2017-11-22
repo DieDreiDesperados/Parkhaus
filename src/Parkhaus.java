@@ -19,16 +19,14 @@ public class Parkhaus {
     private UhrZeit oeffnungzeiten[][];
 
 
-    public Parkhaus (Manager manager, int plaetze) {
+    public Parkhaus (int newID, int plaetze) {
         freieParkplaetze = plaetze;
-        manID = manager.getID();
-        manager.setParkhaus(this);
+        manID = newID;
         automaten = new Kassenautomat[plaetze/100 + 1];
         parkplaetze = new boolean[freieParkplaetze];
         oeffnungzeiten = new UhrZeit[7][2];
         this.eingang = new EingangsSchranke();
         this.ausgang = new AusgangsSchranke();
-        preisNormal = preisDauer = preisTag = 0;
     }
 
     public int getID() { return manID; }
